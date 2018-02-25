@@ -130,7 +130,7 @@ state0   = initResSol(G,  300*barsa, [0, 1]);
 [wellSols, states, report] = simulateScheduleAD(state0, model, schedule);
 %% Plot oil saturation and pressure maps
 figure
-for k = 1:2:numel(states)
+for k = 1:5:numel(states)
     RT = report.ReservoirTime(k)/day;
     
     subplot(1,2,1)
@@ -139,13 +139,14 @@ for k = 1:2:numel(states)
     caxis([0 1])
     axis equal off
     title(sprintf('Oil Saturation,  %d day', RT))
+    pause(0.1)
     
     subplot(1,2,2)
     cla
     plotCellData_DFM(G, states{k}.pressure/barsa)
     axis equal off
     title(sprintf('Pressure,  %d day', RT))
-    colorbar
+    pause(0.1)
     
 end
 %% Plot injection pressure and prodution rate
